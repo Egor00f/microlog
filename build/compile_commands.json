@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/media/usb/microlog/build",
+  "command": "/usr/bin/c++  -I/media/usb/microlog/include -g -o CMakeFiles/microlog.dir/src/microlog.cpp.o -c /media/usb/microlog/src/microlog.cpp",
+  "file": "/media/usb/microlog/src/microlog.cpp"
+},
+{
+  "directory": "/media/usb/microlog/build/examples",
+  "command": "/usr/bin/c++  -I/media/usb/microlog/include -g -o CMakeFiles/example.dir/example.cpp.o -c /media/usb/microlog/examples/example.cpp",
+  "file": "/media/usb/microlog/examples/example.cpp"
+}
+]

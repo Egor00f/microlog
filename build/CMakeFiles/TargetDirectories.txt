@@ -1,0 +1,6 @@
+/media/usb/microlog/build/CMakeFiles/microlog.dir
+/media/usb/microlog/build/CMakeFiles/edit_cache.dir
+/media/usb/microlog/build/CMakeFiles/rebuild_cache.dir
+/media/usb/microlog/build/examples/CMakeFiles/example.dir
+/media/usb/microlog/build/examples/CMakeFiles/edit_cache.dir
+/media/usb/microlog/build/examples/CMakeFiles/rebuild_cache.dir

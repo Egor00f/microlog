@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmicrolog.a CMakeFiles/microlog.dir/src/microlog.cpp.o
+/usr/bin/ranlib libmicrolog.a
