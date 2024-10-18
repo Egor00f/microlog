@@ -2,48 +2,47 @@
 #define __MICROLOG_HPP__
 
 #include <fstream>
-#include <iostream>
 
 /**
  * @brief microlog libarry namespace
- * @details idk
+ * @details idk.
  * @author Egor00f
  */
 namespace microlog
 {
 	/**
-	 * @brief
+	 * @brief Log Levels
 	 */
 	enum class LogLevel
 	{
 		/**
-		 * @brief 
+		 * @brief Fatal error
 		 */
 		Fatal,
 
 		/**
-		 * @brief
+		 * @brief Error
 		 */
 		Error,
 
 		/**
-		 * @brief
+		 * @brief Warning
 		 */
 		Warning,
 
 		/**
-		 * @brief
+		 * @brief Info message
 		 */
 		Info,
 
 		/**
-		 * @brief
+		 * @brief Debug message
 		 */
 		Debug
 	};
 
 	/**
-	 * @brief 
+	 * @brief logger
 	 */
 	class logger
 	{
@@ -59,10 +58,13 @@ namespace microlog
 		 */
 		~logger();
 
+		/// @brief Print log message
+		/// @tparam T
+		/// @param output 
+		/// @return 
 		template< class T >
 		logger& operator << (const T& output)
 		{
-			file.open(_logfile, std::ios::app);
 
 			if(file.is_open())
 			{
@@ -76,18 +78,35 @@ namespace microlog
 		}	
 
 
+		/**
+		 * @brief flush
+		 */
 		void flush();
 
+		/// @brief Make end of line
+		/// @param log 
+		/// @param var 
+		/// @return 
 		friend logger& operator << (logger& log, std::ostream& (*var)(std::ostream&));
 
+		/// @brief Set log level
+		/// @param log 
+		/// @param output log level
+		/// @return 
 		friend logger& operator << (logger &log, const LogLevel& output);
 
 	private:
 
 		void PrintLogLevel();
 
+		/**
+		 * @brief file
+		 */
 		std::ofstream file;
-		std::string _logfile;
+
+		/**
+		 * @brief Current log level
+		 */
 		LogLevel _currentLogLevel;
 	};
 
@@ -96,6 +115,9 @@ namespace microlog
 	logger& operator << (logger& log, std::ostream& (*var)(std::ostream&));
 		
 } // namespace microlog
-
+/**
+ * @example example.cpp
+ * Example of use this lib
+ */
 
 #endif // __MICROLOG_HPP__

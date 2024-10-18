@@ -1,10 +1,10 @@
 #include <microlog/microlog.hpp>
 
 microlog::logger::logger(const std::string& path)
-	:	_logfile(path),
-		_currentLogLevel(microlog::LogLevel::Info)
+	:	_currentLogLevel(microlog::LogLevel::Info),
+		file(path, std::ios::app)
 {
-
+	
 }
 
 microlog::logger::~logger()
