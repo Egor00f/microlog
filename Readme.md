@@ -2,6 +2,10 @@
 
 a small logger for C++
 
+## Kolibrios
+
+This branch is port for kolibros (by default it not compiling)
+
 
 ## example of use
 example:
