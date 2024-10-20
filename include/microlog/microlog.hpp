@@ -4,8 +4,8 @@
 #include <fstream>
 
 /**
- * @brief microlog libarry namespace
- * @details idk.
+ * @brief microlog libary namespace
+ * @details just small logger lib
  * @author Egor00f
  */
 namespace microlog
@@ -16,14 +16,14 @@ namespace microlog
 	enum class LogLevel
 	{
 		/**
-		 * @brief Fatal error
+		 * @brief Info message
 		 */
-		Fatal,
+		Info = 0,
 
 		/**
-		 * @brief Error
+		 * @brief Debug message
 		 */
-		Error,
+		Debug,
 
 		/**
 		 * @brief Warning
@@ -31,14 +31,14 @@ namespace microlog
 		Warning,
 
 		/**
-		 * @brief Info message
+		 * @brief Error
 		 */
-		Info,
+		Error,
 
 		/**
-		 * @brief Debug message
+		 * @brief Fatal error
 		 */
-		Debug
+		Fatal
 	};
 
 	/**
@@ -49,7 +49,7 @@ namespace microlog
 	public:
 		/**
 		 * @brief Constructor
-		 * @param path pfth to log file
+		 * @param path path to log file
 		 */
 		logger(const std::string& path);
 
@@ -60,23 +60,28 @@ namespace microlog
 
 		/// @brief Print log message
 		/// @tparam T
-		/// @param output 
+		/// @param output that you want put to log file
 		/// @return 
 		template< class T >
 		logger& operator << (const T& output)
 		{
+
+			if(newLine)
+			{
+				PrintLogLevel();
+				newLine = false;
+			}
 
 			if(file.is_open())
 			{
 				file << output;
 			}
 
-			if(_currentLogLevel != LogLevel::Info)
+			if(_currentLogLevel > LogLevel::Info)
 				file.flush();
 
 			return *this;
 		}	
-
 
 		/**
 		 * @brief flush
@@ -85,7 +90,7 @@ namespace microlog
 
 		/// @brief Make end of line
 		/// @param log 
-		/// @param var 
+		/// @param var std::endl
 		/// @return 
 		friend logger& operator << (logger& log, std::ostream& (*var)(std::ostream&));
 
@@ -107,7 +112,12 @@ namespace microlog
 		/**
 		 * @brief Current log level
 		 */
-		LogLevel _currentLogLevel;
+		LogLevel _currentLogLevel = LogLevel::Info;
+		
+		/**
+		 * @brief Now is new line
+		 */
+		bool newLine = false;
 	};
 
 	logger& operator << (logger &log, const LogLevel& output);

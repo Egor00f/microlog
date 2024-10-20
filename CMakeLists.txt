@@ -21,7 +21,11 @@ else()
 	message(FATAL_ERROR "KOLIBRIOS Repo not found, try set KOLIBRIOS_REPO or download kolibros repo")
 endif()
 
-add_library(microlog STATIC ${CMAKE_CURRENT_SOURCE_DIR}/src/microlog.cpp)
+add_library(
+	microlog STATIC 
+	${CMAKE_CURRENT_SOURCE_DIR}/src/microlog.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/microlog/microlog.hpp
+)
 
 target_include_directories(
 	microlog 
@@ -47,5 +51,6 @@ if(microlog_BUILD_DOCS)
 endif()
 
 if(microlog_BUILD_TESTS)
-	#add_subdirectory(tests)
+	enable_testing()
+	add_subdirectory(tests)
 endif()
