@@ -19,7 +19,7 @@ int main()
 
 	logger << microlog::LogLevel::Error << "Error!";
 
-	logger << microlog::LogLevel::Debug << "Debug!";
+	logger << microlog::LogLevel::Debug << "Debug!" << std::endl;
 
 	logger << microlog::LogLevel::Fatal << "Fatal Error!";
 

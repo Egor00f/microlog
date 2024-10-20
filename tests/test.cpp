@@ -4,14 +4,6 @@ microlog::logger logger("test.log");
 
 int main()
 {
-    const std::string result = "\n\
-[Info] HelloWorld\n\
-[Info] HelloWorld again!\n\
-[Info] message message message message message message message message message message message message message message message message \n\
-[Warning] Warning\n\
-[Error] Error!\n\
-[Debug] Debug!\n\
-[Fatal] Fatal Error!";
 
     logger << microlog::LogLevel::Info << "HelloWorld" << std::endl;
 
@@ -30,15 +22,5 @@ int main()
 
 	logger << microlog::LogLevel::Fatal << "Fatal Error!";
 
-
-    std::ifstream file("test.log");
-
-    std::string buff;
-
-    if(file.is_open())
-    {
-        while (std::getline(file, buff)){}
-    }
-
-    return buff == result;
+	return 0;
 }

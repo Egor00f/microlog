@@ -12,9 +12,16 @@ option(microlog_BUILD_TESTS    "Build microlog tests"    ON)
 option(microlog_BUILD_DOCS     "Build microlog doxygen"	 ON)
 
 
-add_library(microlog STATIC ${CMAKE_CURRENT_SOURCE_DIR}/src/microlog.cpp)
+add_library(
+	microlog STATIC 
+	${CMAKE_CURRENT_SOURCE_DIR}/src/microlog.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/microlog/microlog.hpp
+)
 
-target_include_directories(microlog PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(
+	microlog 
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
 if(microlog_BUILD_EXAMPLES)
 	add_subdirectory(examples)
@@ -33,5 +40,6 @@ if(microlog_BUILD_DOCS)
 endif()
 
 if(microlog_BUILD_TESTS)
-	#add_subdirectory(tests)
+	enable_testing()
+	add_subdirectory(tests)
 endif()

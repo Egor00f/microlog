@@ -1,10 +1,16 @@
 #include <microlog/microlog.hpp>
+#include <chrono>
+#include <iomanip>
+#include <ctime>
 
 microlog::logger::logger(const std::string& path)
 	:	_currentLogLevel(microlog::LogLevel::Info),
 		file(path, std::ios::app)
 {
-	
+	auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+
+	*this << "Start Log: " << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d %X") << std::endl;
 }
 
 microlog::logger::~logger()
@@ -31,7 +37,7 @@ microlog::logger &microlog::operator<<(logger &log, std::ostream& (*var)(std::os
 {
 	log.file << std::endl;
 
-	log.PrintLogLevel();
+	log.newLine = true;
 
 	return log;
 }
