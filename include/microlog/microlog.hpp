@@ -3,10 +3,9 @@
 
 #include <fstream>
 
-
 /**
  * @brief microlog libary namespace
- * @details idk.
+ * @details just small logger lib
  * @author Egor00f
  */
 namespace microlog
@@ -61,7 +60,7 @@ namespace microlog
 
 		/// @brief Print log message
 		/// @tparam T
-		/// @param output 
+		/// @param output that you want put to log file
 		/// @return 
 		template< class T >
 		logger& operator << (const T& output)
@@ -91,7 +90,7 @@ namespace microlog
 
 		/// @brief Make end of line
 		/// @param log 
-		/// @param var 
+		/// @param var std::endl
 		/// @return 
 		friend logger& operator << (logger& log, std::ostream& (*var)(std::ostream&));
 
@@ -115,6 +114,9 @@ namespace microlog
 		 */
 		LogLevel _currentLogLevel = LogLevel::Info;
 		
+		/**
+		 * @brief Now is new line
+		 */
 		bool newLine = false;
 	};
 

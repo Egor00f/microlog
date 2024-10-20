@@ -27,6 +27,7 @@ logger << microlog::LogLevel::Fatal << "Fatal Error!";
 output:
 
 ```
+Start Log: 2024-10-20 11:40:48
 
 [Info] HelloWorld
 [Info] HelloWorld again!
