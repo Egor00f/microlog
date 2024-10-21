@@ -18,7 +18,7 @@ namespace microlog
 		/**
 		 * @brief Info message
 		 */
-		Info = 0,
+		Info,
 
 		/**
 		 * @brief Debug message
@@ -73,11 +73,9 @@ namespace microlog
 			}
 
 			if(file.is_open())
-			{
 				file << output;
-			}
 
-			if(_currentLogLevel > LogLevel::Info)
+			if(_currentLogLevel != LogLevel::Info)
 				file.flush();
 
 			return *this;
