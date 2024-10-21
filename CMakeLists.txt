@@ -34,6 +34,11 @@ target_include_directories(
 	PUBLIC PUBLIC ${KOLIBRIOS_REPO}/contrib/sdk/sources/libstdc++-v3/include
 )
 
+target_compile_options(
+	microlog
+ 	PUBLIC -fno-ident -fomit-frame-pointer -U__WIN32__ -U_Win32 -U_WIN32 -U__MINGW32__ -UWIN32
+)
+
 if(microlog_BUILD_EXAMPLES)
 	add_subdirectory(examples)
 endif()
