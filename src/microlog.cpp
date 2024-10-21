@@ -8,11 +8,11 @@ microlog::logger::logger(const std::string& path)
 	std::time_t timer = std::time(NULL);
     auto tm_info = std::localtime(&timer);
 
-	char buffer[32];
+	char buffer[128];
 
-	std::strftime(buffer, 26, "%Y-%m-%d %H:%M:%S", tm_info);
+	std::strftime(buffer, sizeof(buffer), "Start Log: %D %T", tm_info);
 
-	*this << "Start Log: " << buffer << std::endl;
+	*this << buffer << std::endl;
 }
 
 microlog::logger::~logger()
@@ -40,7 +40,9 @@ microlog::logger &microlog::operator<<(logger &log, const LogLevel &output)
 
 microlog::logger &microlog::operator<<(logger &log, std::ostream& (*var)(std::ostream&))
 {
-	log.file << std::endl;
+
+	if(log.file.is_open())
+		log.file << std::endl;
 
 	log.newLine = true;
 
