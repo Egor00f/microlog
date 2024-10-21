@@ -7,7 +7,7 @@ project(
 	LANGUAGES CXX
 )
 
-option(microlog_BUILD_EXAMPLES "Build microlog examples" ON)
+option(microlog_BUILD_EXAMPLES "Build microlog examples" OFF)
 option(microlog_BUILD_TESTS    "Build microlog tests"    ON)
 option(microlog_BUILD_DOCS     "Build microlog doxygen"	 ON)
 
