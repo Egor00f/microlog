@@ -1,6 +1,5 @@
 #include <microlog/microlog.hpp>
 
-
 microlog::logger logger("log.log");
 
 int main()
@@ -10,7 +9,7 @@ int main()
 
 	logger << "HelloWorld again!" << std::endl;
 
-	for(std::size_t i = 0; i < 16; i++)
+	for (std::size_t i = 0; i < 16; i++)
 	{
 		logger << "message ";
 	}

@@ -1,23 +1,22 @@
 #include <microlog/microlog.hpp>
 #include <ctime>
 
-microlog::logger::logger(const std::string& path)
-	:	_currentLogLevel(microlog::LogLevel::Info),
-		file(path, std::ios::app)
+microlog::logger::logger(const std::string &path)
+	: file(path, std::ios::app)
 {
 	std::time_t timer = std::time(NULL);
-    auto tm_info = std::localtime(&timer);
+	auto tm_info = std::localtime(&timer);
 
 	char buffer[128];
 
 	std::strftime(buffer, sizeof(buffer), "Start Log: %D %T", tm_info);
 
-	*this << buffer << std::endl;
+	*this << microlog::LogLevel::Info << buffer << std::endl;
 }
 
 microlog::logger::~logger()
 {
-	if(file.is_open())
+	if (file.is_open())
 	{
 		file << std::endl;
 		file.close();
@@ -38,10 +37,9 @@ microlog::logger &microlog::operator<<(logger &log, const LogLevel &output)
 	return log;
 }
 
-microlog::logger &microlog::operator<<(logger &log, std::ostream& (*var)(std::ostream&))
+microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostream &))
 {
-
-	if(log.file.is_open())
+	if (log.file.is_open())
 		log.file << std::endl;
 
 	log.newLine = true;
@@ -51,41 +49,42 @@ microlog::logger &microlog::operator<<(logger &log, std::ostream& (*var)(std::os
 
 void microlog::logger::PrintLogLevel()
 {
-	file << "[";
+	file << '[';
 
 	switch (_currentLogLevel)
 	{
 	case microlog::LogLevel::Warning:
-		
+
 		file << "Warning";
 
 		break;
-	
+
 	case microlog::LogLevel::Error:
-		
+
 		file << "Error";
 
 		break;
 
 	case microlog::LogLevel::Info:
-		
+
 		file << "Info";
 
 		break;
 
 	case microlog::LogLevel::Fatal:
-		
+
 		file << "Fatal";
 
 		break;
 
 	case microlog::LogLevel::Debug:
-		
+
 		file << "Debug";
 
 		break;
 
 	default:
+		file << "IDK";
 		break;
 	}
 

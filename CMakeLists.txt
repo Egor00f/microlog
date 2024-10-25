@@ -23,6 +23,11 @@ target_include_directories(
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_compile_options(
+	microlog
+	PUBLIC "$<$<CONFIG:DEBUG>:-DDEBUG -g3>"
+)
+
 if(microlog_BUILD_EXAMPLES)
 	add_subdirectory(examples)
 endif()
