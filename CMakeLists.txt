@@ -36,6 +36,7 @@ if(microlog_BUILD_DOCS)
 	find_package(Doxygen)
 
 	set(DOXYGEN_EXAMPLE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/examples)
+	set(DOXYGEN_USE_MDFILE_AS_MAINPAGE ${CMAKE_CURRENT_SOURCE_DIR}/Readme.md)
 
 	IF(DOXYGEN_FOUND)
 		doxygen_add_docs(doc)
