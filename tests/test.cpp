@@ -1,15 +1,16 @@
 #include <microlog/microlog.hpp>
 
-microlog::logger logger("test.log");
-
 int main()
 {
+	// проверка что логгер просто не падает
 
-    logger << microlog::LogLevel::Info << "HelloWorld" << std::endl;
+	microlog::logger logger("test.log");
+
+	logger << microlog::LogLevel::Info << "HelloWorld" << std::endl;
 
 	logger << "HelloWorld again!" << std::endl;
 
-	for(std::size_t i = 0; i < 16; i++)
+	for (std::size_t i = 0; i < 16; i++)
 	{
 		logger << "message ";
 	}
@@ -18,7 +19,7 @@ int main()
 
 	logger << microlog::LogLevel::Error << "Error!";
 
-	logger << microlog::LogLevel::Debug << "Debug!";
+	logger << microlog::LogLevel::Debug << "Debug!" << std::endl;
 
 	logger << microlog::LogLevel::Fatal << "Fatal Error!";
 

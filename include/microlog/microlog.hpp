@@ -43,6 +43,8 @@ namespace microlog
 
 	/**
 	 * @brief logger
+	 * @details just logger. Write logs to file. Use operator << for output.
+	 * @bug The first line in the file is empty. I don't know why.
 	 */
 	class logger
 	{
@@ -51,7 +53,7 @@ namespace microlog
 		 * @brief Constructor
 		 * @param path path to log file
 		 */
-		logger(const std::string& path);
+		logger(const std::string &path);
 
 		/**
 		 * @brief Destructor
@@ -61,25 +63,37 @@ namespace microlog
 		/// @brief Print log message
 		/// @tparam T
 		/// @param output that you want put to log file
-		/// @return 
-		template< class T >
-		logger& operator << (const T& output)
+		/// @return
+		template <class T>
+		logger &operator<<(const T &output)
 		{
-
-			if(newLine)
+#ifndef DEBUG
+			if (_currentLogLevel != LogLevel::Debug)
 			{
-				PrintLogLevel();
-				newLine = false;
-			}
+#endif
 
-			if(file.is_open())
-				file << output;
+				if (newLine)
+				{
+					PrintLogLevel();
+					newLine = false;
+				}
 
-			if(_currentLogLevel != LogLevel::Info)
+				if (file.is_open())
+					file << output;
+
+#ifdef DEBUG
 				file.flush();
+#else
+			if (_currentLogLevel >= LogLevel::Error)
+				file.flush();
+#endif
+
+#ifndef DEBUG
+			}
+#endif
 
 			return *this;
-		}	
+		}
 
 		/**
 		 * @brief flush
@@ -87,19 +101,18 @@ namespace microlog
 		void flush();
 
 		/// @brief Make end of line
-		/// @param log 
+		/// @param log
 		/// @param var std::endl
-		/// @return 
-		friend logger& operator << (logger& log, std::ostream& (*var)(std::ostream&));
+		/// @return
+		friend logger &operator<<(logger &log, std::ostream &(*var)(std::ostream &));
 
 		/// @brief Set log level
-		/// @param log 
+		/// @param log
 		/// @param output log level
-		/// @return 
-		friend logger& operator << (logger &log, const LogLevel& output);
+		/// @return
+		friend logger &operator<<(logger &log, const LogLevel &output);
 
 	private:
-
 		void PrintLogLevel();
 
 		/**
@@ -111,17 +124,17 @@ namespace microlog
 		 * @brief Current log level
 		 */
 		LogLevel _currentLogLevel = LogLevel::Info;
-		
+
 		/**
 		 * @brief Now is new line
 		 */
 		bool newLine = false;
 	};
 
-	logger& operator << (logger &log, const LogLevel& output);
+	logger &operator<<(logger &log, const LogLevel &output);
 
-	logger& operator << (logger& log, std::ostream& (*var)(std::ostream&));
-		
+	logger &operator<<(logger &log, std::ostream &(*var)(std::ostream &));
+
 } // namespace microlog
 /**
  * @example example.cpp

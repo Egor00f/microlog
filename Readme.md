@@ -41,3 +41,7 @@ Start Log: 2024-10-20 11:40:48
 [Debug] Debug!
 [Fatal] Fatal Error!
 ```
+
+## Depends
+
+only fstream(in header) and ctime(in cpp)
