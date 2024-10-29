@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/../../kolibrios/contrib/sdk/sources/libstdc++-v3/include",
+                "${workspaceFolder}/../../kolibrios/contrib/sdk/sources/newlib/libc/include"
             ],
             "defines": [],
             "cStandard": "c11",
