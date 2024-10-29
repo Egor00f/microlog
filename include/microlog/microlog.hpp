@@ -60,10 +60,12 @@ namespace microlog
 		 */
 		~logger();
 
-		/// @brief Print log message
-		/// @tparam T
-		/// @param output that you want put to log file
-		/// @return
+		/**
+		 * @brief Print log message
+		 * @tparam T
+		 * @param output that you want put to log file
+		 * @return
+		 */
 		template <class T>
 		logger &operator<<(const T &output)
 		{
@@ -100,16 +102,20 @@ namespace microlog
 		 */
 		void flush();
 
-		/// @brief Make end of line
-		/// @param log
-		/// @param var std::endl
-		/// @return
+		/**
+		 * @brief Make end of line
+		 * @param log
+		 * @param var std::endl
+		 * @return
+		 */
 		friend logger &operator<<(logger &log, std::ostream &(*var)(std::ostream &));
 
-		/// @brief Set log level
-		/// @param log
-		/// @param output log level
-		/// @return
+		/**
+		 * @brief Set log level
+		 * @param log
+		 * @param output log level
+		 * @return
+		 */
 		friend logger &operator<<(logger &log, const LogLevel &output);
 
 	private:
