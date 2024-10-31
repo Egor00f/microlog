@@ -49,7 +49,7 @@ microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostre
 
 void microlog::logger::PrintLogLevel()
 {
-	std::string output = "[;
+	std::string output = "[";
 
 	switch (_currentLogLevel)
 	{
