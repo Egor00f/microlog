@@ -81,14 +81,16 @@ namespace microlog
 				}
 
 				if (file.is_open())
+				{
 					file << output;
 
 #ifdef DEBUG
-				file.flush();
+					file.flush();
 #else
-			if (_currentLogLevel >= LogLevel::Error)
-				file.flush();
+					if (_currentLogLevel >= LogLevel::Error)
+						file.flush();
 #endif
+				}
 
 #ifndef DEBUG
 			}
