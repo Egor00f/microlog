@@ -24,7 +24,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install Toolchain
-      uses: Egor00f/install-kolibrios-toolchain-action@v1
+      uses: Egor00f/install-kolibrios-toolchain-action@main
 
     - name: KolibriOS repo
       run: |
