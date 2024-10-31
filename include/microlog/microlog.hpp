@@ -86,7 +86,7 @@ namespace microlog
 					newLine = false;
 				}
 
-				_ksys_debug_puts(stream.str());
+				_ksys_debug_puts(stream.str().c_str());
 
 				if (file.is_open())
 					file << output;
