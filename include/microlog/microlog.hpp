@@ -2,6 +2,7 @@
 #define __MICROLOG_HPP__
 
 #include <fstream>
+#include <sstream>
 #include <sys/ksys.h>
 
 /**
@@ -74,7 +75,7 @@ namespace microlog
 			if (_currentLogLevel != LogLevel::Debug)
 			{
 #endif
-				std::stringstream stream;
+				std::ostringstream stream;
 
 				stream << output;
 
