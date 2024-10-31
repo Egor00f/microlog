@@ -121,6 +121,10 @@ namespace microlog
 		friend logger &operator<<(logger &log, const LogLevel &output);
 
 	private:
+		/**
+  		 * @brief Write current log level
+		 * @details Write to file "[currentLogLevel] "
+		 */
 		void PrintLogLevel();
 
 		/**
