@@ -49,45 +49,48 @@ microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostre
 
 void microlog::logger::PrintLogLevel()
 {
-	std::string output;
+	std::string output = "[;
 
 	switch (_currentLogLevel)
 	{
 	case microlog::LogLevel::Warning:
 
-		output = "Warning";
+		output += "Warning";
 
 		break;
 
 	case microlog::LogLevel::Error:
 
-		output = "Error";
+		output += "Error";
 
 		break;
 
 	case microlog::LogLevel::Info:
 
-		output = "Info";
+		output += "Info";
 
 		break;
 
 	case microlog::LogLevel::Fatal:
 
-		output = "Fatal";
+		output += "Fatal";
 
 		break;
 
 	case microlog::LogLevel::Debug:
 
-		output = "Debug";
+		output += "Debug";
 
 		break;
 
 	default:
-		output = "IDK";
+		output += "IDK";
 		
 		break;
 	}
 
-	file << '[' << output << "] ";
+	output += " ]";
+
+	if (file.is_open())
+		file << output;
 }
