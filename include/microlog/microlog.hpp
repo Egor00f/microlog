@@ -89,14 +89,16 @@ namespace microlog
 				_ksys_debug_puts(stream.str().c_str());
 
 				if (file.is_open())
+				{
 					file << output;
 
 #ifdef DEBUG
-				file.flush();
+					file.flush();
 #else
-			if (_currentLogLevel >= LogLevel::Error)
-				file.flush();
+					if (_currentLogLevel >= LogLevel::Error)
+						file.flush();
 #endif
+				}
 
 #ifndef DEBUG
 			}
@@ -127,6 +129,10 @@ namespace microlog
 		friend logger &operator<<(logger &log, const LogLevel &output);
 
 	private:
+		/**
+  		 * @brief Write current log level
+		 * @details Write to file "[currentLogLevel] "
+		 */
 		void PrintLogLevel();
 
 		/**
