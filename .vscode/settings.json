@@ -69,6 +69,7 @@
 		"tparam",
 		"Egor",
 		"endl",
-		"fstream"
+		"fstream",
+		"ksys"
 	]
 }

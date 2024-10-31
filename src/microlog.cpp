@@ -16,6 +16,8 @@ microlog::logger::logger(const std::string &path)
 
 microlog::logger::~logger()
 {
+	_ksys_debug_putc('\n');
+
 	if (file.is_open())
 	{
 		file << std::endl;
@@ -39,6 +41,8 @@ microlog::logger &microlog::operator<<(logger &log, const LogLevel &output)
 
 microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostream &))
 {
+	_ksys_debug_putc('\n');
+
 	if (log.file.is_open())
 		log.file << std::endl;
 
@@ -88,9 +92,12 @@ void microlog::logger::PrintLogLevel()
 		
 		break;
 	}
+  
+	_ksys_debug_puts(output.c_str());
 
 	output += " ]";
 
 	if (file.is_open())
 		file << output;
 }
+

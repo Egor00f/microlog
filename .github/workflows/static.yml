@@ -35,6 +35,11 @@ jobs:
       - name: Install Depends
         run: sudo apt install doxygen
 
+      - name: Install toolchain
+        uses: Egor00f/instal-kolibrios-toolchain-action@main
+      - name: Install kolibrios repo
+        run: cd ${{ github.workspace }}/../../ && git clone https://git.kolibrios.org/KolibriOS/kolibrios.git
+
       - name: Configure CMake
         run: cd ${{github.workspace}} && cmake -B ${{ github.workspace }}/build
         
