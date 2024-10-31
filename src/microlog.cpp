@@ -57,6 +57,18 @@ void microlog::logger::PrintLogLevel()
 
 	switch (_currentLogLevel)
 	{
+	case microlog::LogLevel::Info:
+
+		output += "Info";
+
+		break;
+
+	case microlog::LogLevel::Debug:
+
+		output += "Debug";
+
+		break;
+
 	case microlog::LogLevel::Warning:
 
 		output += "Warning";
@@ -69,21 +81,9 @@ void microlog::logger::PrintLogLevel()
 
 		break;
 
-	case microlog::LogLevel::Info:
-
-		output += "Info";
-
-		break;
-
 	case microlog::LogLevel::Fatal:
 
 		output += "Fatal";
-
-		break;
-
-	case microlog::LogLevel::Debug:
-
-		output += "Debug";
 
 		break;
 
@@ -92,10 +92,11 @@ void microlog::logger::PrintLogLevel()
 		
 		break;
 	}
+
+	output += " ]";
   
 	_ksys_debug_puts(output.c_str());
 
-	output += " ]";
 
 	if (file.is_open())
 		file << output;
