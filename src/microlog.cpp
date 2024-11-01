@@ -7,7 +7,7 @@ microlog::logger::logger(const std::string &path)
 	std::time_t timer = std::time(NULL);
 	auto tm_info = std::localtime(&timer);
 
-	char buffer[128];
+	char buffer[64];
 
 	std::strftime(buffer, sizeof(buffer), "Start Log: %D %T", tm_info);
 
@@ -89,7 +89,7 @@ void microlog::logger::PrintLogLevel()
 		break;
 	}
 
-	output += " ]";
+	output += "] ";
 
 	if (file.is_open())
 		file << output;
