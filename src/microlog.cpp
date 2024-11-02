@@ -16,6 +16,8 @@ microlog::logger::logger(const std::string &path)
 
 microlog::logger::~logger()
 {
+	_ksys_debug_putc('\n');
+
 	if (file.is_open())
 	{
 		file << std::endl;
@@ -39,6 +41,8 @@ microlog::logger &microlog::operator<<(logger &log, const LogLevel &output)
 
 microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostream &))
 {
+	_ksys_debug_putc('\n');
+
 	if (log.file.is_open())
 		log.file << std::endl;
 
@@ -53,6 +57,18 @@ void microlog::logger::PrintLogLevel()
 
 	switch (_currentLogLevel)
 	{
+	case microlog::LogLevel::Info:
+
+		output += "Info";
+
+		break;
+
+	case microlog::LogLevel::Debug:
+
+		output += "Debug";
+
+		break;
+
 	case microlog::LogLevel::Warning:
 
 		output += "Warning";
@@ -65,21 +81,9 @@ void microlog::logger::PrintLogLevel()
 
 		break;
 
-	case microlog::LogLevel::Info:
-
-		output += "Info";
-
-		break;
-
 	case microlog::LogLevel::Fatal:
 
 		output += "Fatal";
-
-		break;
-
-	case microlog::LogLevel::Debug:
-
-		output += "Debug";
 
 		break;
 
@@ -90,7 +94,10 @@ void microlog::logger::PrintLogLevel()
 	}
 
 	output += "] ";
+  
+	_ksys_debug_puts(output.c_str());
 
 	if (file.is_open())
 		file << output;
 }
+
