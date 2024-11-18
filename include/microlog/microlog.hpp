@@ -76,6 +76,9 @@ namespace microlog
 
 				if (newLine)
 				{
+					if (file.is_open())
+						file << std::endl;
+
 					PrintLogLevel();
 					newLine = false;
 				}
@@ -87,8 +90,8 @@ namespace microlog
 #ifdef DEBUG
 					file.flush();
 #else
-					if (_currentLogLevel >= LogLevel::Error)
-						file.flush();
+				if (_currentLogLevel >= LogLevel::Error)
+					file.flush();
 #endif
 				}
 
@@ -122,7 +125,7 @@ namespace microlog
 
 	private:
 		/**
-  		 * @brief Write current log level
+		 * @brief Write current log level
 		 * @details Write to file "[currentLogLevel] "
 		 */
 		void PrintLogLevel();

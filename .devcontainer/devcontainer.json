@@ -1,7 +1,4 @@
 {
-	"name": "Egor00fs config",
-  
-	"description": "idk",
 	"image": "mcr.microsoft.com/devcontainers/cpp:debian-12",
 	
 	"features": {
@@ -16,7 +13,6 @@
 				"ms-vscode.cpptools",
 				"usernamehw.errorlens",
 				"streetsidesoftware.code-spell-checker",
-				"streetsidesoftware.code-spell-checker-russian",
 				"christian-kohler.path-intellisense",
 				"ibm.output-colorizer"
 			]
