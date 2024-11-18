@@ -2,6 +2,8 @@
 #define __MICROLOG_HPP__
 
 #include <fstream>
+#include <sstream>
+#include <sys/ksys.h>
 
 /**
  * @brief microlog libary namespace
@@ -73,6 +75,10 @@ namespace microlog
 			if (_currentLogLevel != LogLevel::Debug)
 			{
 #endif
+				std::ostringstream stream;
+
+				stream << output;
+
 
 				if (newLine)
 				{
@@ -82,6 +88,8 @@ namespace microlog
 					PrintLogLevel();
 					newLine = false;
 				}
+
+				_ksys_debug_puts(stream.str().c_str());
 
 				if (file.is_open())
 				{

@@ -13,6 +13,16 @@ option(microlog_BUILD_DOCS     "Build microlog doxygen"	 ON)
 
 set (CMAKE_CXX_STANDARD 11)
 
+set(KOLIBRIOS_REPO	${CMAKE_CURRENT_SOURCE_DIR}/../../kolibrios)
+
+get_filename_component(REPO ${KOLIBRIOS_REPO} REALPATH)
+set(KOLIBRIOS_REPO ${REPO})
+if(EXISTS "${REPO}")
+	message(STATUS "KOLIBRIOS REPO Found: ${KOLIBRIOS_REPO}")
+else()
+	message(FATAL_ERROR "KOLIBRIOS Repo not found, try set KOLIBRIOS_REPO or download kolibros repo")
+endif()
+
 add_library(
 	microlog STATIC 
 	${CMAKE_CURRENT_SOURCE_DIR}/src/microlog.cpp
@@ -22,6 +32,13 @@ add_library(
 target_include_directories(
 	microlog 
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+ 	PUBLIC ${KOLIBRIOS_REPO}/contrib/sdk/sources/newlib/libc/include
+	PUBLIC PUBLIC ${KOLIBRIOS_REPO}/contrib/sdk/sources/libstdc++-v3/include
+)
+
+target_compile_options(
+	microlog
+ 	PUBLIC -fno-ident -fomit-frame-pointer -U__WIN32__ -U_Win32 -U_WIN32 -U__MINGW32__ -UWIN32
 )
 
 target_compile_options(
