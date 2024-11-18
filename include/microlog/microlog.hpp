@@ -77,17 +77,18 @@ namespace microlog
 #endif
 				std::ostringstream stream;
 
-				stream << output;
-
-
 				if (newLine)
 				{
 					if (file.is_open())
 						file << std::endl;
+					
+					stream << '\n';
 
 					PrintLogLevel();
 					newLine = false;
 				}
+
+				stream << output;
 
 				_ksys_debug_puts(stream.str().c_str());
 
