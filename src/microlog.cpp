@@ -30,27 +30,6 @@ void microlog::logger::flush()
 	file.flush();
 }
 
-microlog::logger &microlog::operator<<(logger &log, const LogLevel &output)
-{
-	log._currentLogLevel = output;
-
-	log << std::endl;
-
-	return log;
-}
-
-microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostream &))
-{
-	_ksys_debug_putc('\n');
-
-	if (log.file.is_open())
-		log.file << std::endl;
-
-	log.newLine = true;
-
-	return log;
-}
-
 void microlog::logger::PrintLogLevel()
 {
 	std::string output = "[";
@@ -89,7 +68,7 @@ void microlog::logger::PrintLogLevel()
 
 	default:
 		output += "IDK";
-		
+
 		break;
 	}
 
@@ -101,3 +80,18 @@ void microlog::logger::PrintLogLevel()
 		file << output;
 }
 
+microlog::logger &microlog::operator<<(logger &log, const LogLevel &output)
+{
+	log._currentLogLevel = output;
+
+	log << std::endl;
+
+	return log;
+}
+
+microlog::logger &microlog::operator<<(logger &log, std::ostream &(*)(std::ostream &))
+{
+	log.newLine = true;
+
+	return log;
+}

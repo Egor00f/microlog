@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "any",
             "includePath": [
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/../../kolibrios/contrib/sdk/sources/libstdc++-v3/include",
@@ -10,7 +10,7 @@
             "defines": [],
             "cStandard": "c11",
             "cppStandard": "gnu++11",
-            "intelliSenseMode": "linux-gcc-arm64"
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4

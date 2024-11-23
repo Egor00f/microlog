@@ -77,14 +77,18 @@ namespace microlog
 #endif
 				std::ostringstream stream;
 
-				stream << output;
-
-
 				if (newLine)
 				{
+					if (file.is_open())
+						file << std::endl;
+					
+					stream << '\n';
+
 					PrintLogLevel();
 					newLine = false;
 				}
+
+				stream << output;
 
 				_ksys_debug_puts(stream.str().c_str());
 
@@ -95,8 +99,8 @@ namespace microlog
 #ifdef DEBUG
 					file.flush();
 #else
-					if (_currentLogLevel >= LogLevel::Error)
-						file.flush();
+				if (_currentLogLevel >= LogLevel::Error)
+					file.flush();
 #endif
 				}
 
@@ -130,7 +134,7 @@ namespace microlog
 
 	private:
 		/**
-  		 * @brief Write current log level
+		 * @brief Write current log level
 		 * @details Write to file "[currentLogLevel] "
 		 */
 		void PrintLogLevel();

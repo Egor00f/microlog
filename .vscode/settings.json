@@ -71,5 +71,10 @@
 		"endl",
 		"fstream",
 		"ksys"
-	]
+	],
+
+	"cmake.configureSettings": {
+		"CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/KolibriOS-toolchain-file/toolchain.cmake",
+		"KOLIBRIOS_REPO": "${workspaceFolder}/../../kolibrios"
+	}
 }
