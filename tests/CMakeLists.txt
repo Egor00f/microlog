@@ -1,6 +1,7 @@
 
+include(kolibriexe)
 
-add_executable(micrologTest ${CMAKE_CURRENT_SOURCE_DIR}/test.cpp)
+add_kolibri_executable(micrologTest ${CMAKE_CURRENT_SOURCE_DIR}/test.cpp)
 
 target_link_libraries(micrologTest PRIVATE microlog)
 

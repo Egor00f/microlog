@@ -17,5 +17,7 @@
 				"ibm.output-colorizer"
 			]
 		}
-	}
+	},
+
+	"postCreateCommand": "./.devcontainer/postCreateCommand.sh"
 }
